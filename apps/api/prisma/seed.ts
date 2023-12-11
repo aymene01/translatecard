@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { cards } from './data';
+import { cards } from './data'
 
 const prisma = new PrismaClient()
 
