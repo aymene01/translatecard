@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/bin/api.ts --bundle --platform=node --target=node14 --outfile=dist/api.js",
-    "dev": "pnpm prisma generate && node -r esbuild-register src/bin/api.ts",
+    "dev": "pnpm prisma generate && nodemon --delay 500ms --exec 'node -r esbuild-register src/bin/api.ts' -e ts",
     "test": "vitest --run"
   },
   "keywords": [],
@@ -17,7 +17,8 @@
     "@types/lodash": "^4.14.194",
     "@types/morgan": "^1.9.9",
     "esbuild": "^0.19.7",
-    "esbuild-register": "^3.5.0"
+    "esbuild-register": "^3.5.0",
+    "nodemon": "^3.0.2"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",

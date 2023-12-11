@@ -9,7 +9,7 @@ const stream = pretty({
 
 export const logger = pino(
   {
-    name: "MyLogger",
+    name: "translate-cards-logger",
     level: process.env.NODE_ENV === "development" ? "debug" : "info",
   },
   stream
