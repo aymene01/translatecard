@@ -1,4 +1,4 @@
-import { getListenAddr, getString, getBoolean, getEnum, getNumber } from '@translatecard/toolbox'
+import { getListenAddr, getString, getBoolean, getNumber } from '@translatecard/toolbox'
 
 export const ENVIRONMENT = getString('ENVIRONMENT', 'local')
 export const DATABASE_URL = getString('DATABASE_URL', 'postgres://user:password@localhost:5432/database')
