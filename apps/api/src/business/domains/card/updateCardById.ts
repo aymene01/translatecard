@@ -1,5 +1,6 @@
 import { Options } from '@/business/types'
 import { Card, Prisma } from '@prisma/client'
+import { isEmpty } from 'lodash'
 
 type DataToUpdate = {
   content?: string
@@ -16,10 +17,22 @@ type UpdateCardByIdResponse = { updatedCard: Card } | { error: { message: string
 export const updateCardById = async (opts: Options, req: UpdateCardByIdRequest): Promise<UpdateCardByIdResponse> => {
   const updatePayload = buildUpdatePayload(req)
 
-  if (Object.keys(updatePayload).length === 0) {
+  if (isEmpty(Object.keys(updatePayload))) {
     return {
       error: {
         message: 'No valid fields provided for update.',
+      },
+    }
+  }
+
+  const existingCard = await opts.database.prisma.card.findUnique({
+    where: { id: req.id },
+  })
+
+  if (!existingCard) {
+    return {
+      error: {
+        message: `Card with ID ${req.id} does not exist.`,
       },
     }
   }
@@ -31,16 +44,8 @@ export const updateCardById = async (opts: Options, req: UpdateCardByIdRequest):
     })
 
     return { updatedCard }
-  } catch (error) {
+  } catch (error: unknown) {
     opts.logger.error(`Error updating card with ID ${req.id}:`, error)
-
-    if (isRecordNotFoundError(error)) {
-      return {
-        error: {
-          message: `Card with ID ${req.id} does not exist.`,
-        },
-      }
-    }
 
     return {
       error: {
@@ -58,12 +63,4 @@ function buildUpdatePayload(req: UpdateCardByIdRequest): Prisma.CardUpdateInput 
     }
     return payload
   }, {} as Prisma.CardUpdateInput)
-}
-
-function isRecordNotFoundError(error: unknown): boolean {
-  return isPrismaError(error) && error.meta?.cause === 'Record to delete does not exist.'
-}
-
-function isPrismaError(error: unknown): error is Prisma.PrismaClientKnownRequestError {
-  return typeof error === 'object' && error !== null && 'code' in error
 }
