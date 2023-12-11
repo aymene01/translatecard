@@ -1,0 +1,23 @@
+{
+  "name": "@translatecard/toolbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "tsc": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-request": "^6.1.0",
+    "lodash": "^4.17.21",
+    "next": "13.4.10",
+    "pino": "^8.11.0",
+    "pino-pretty": "^9.2.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.194"
+  }
+}
