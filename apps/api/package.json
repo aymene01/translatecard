@@ -6,7 +6,8 @@
   "scripts": {
     "build": "esbuild src/bin/api.ts --bundle --platform=node --target=node14 --outfile=dist/api.js",
     "dev": "pnpm prisma generate && nodemon --delay 500ms --exec 'node -r esbuild-register src/bin/api.ts' -e ts",
-    "test": "vitest --run"
+    "test": "vitest --run",
+    "postinstall": "pnpm prisma generate"
   },
   "keywords": [],
   "author": "",
