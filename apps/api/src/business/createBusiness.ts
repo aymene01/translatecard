@@ -1,6 +1,6 @@
 import { Options } from './types'
 import { partial } from 'lodash'
-import { createCard, getAllCards, getCardById, deleteCardById, updateCardById} from './domains/card'
+import { createCard, getAllCards, getCardById, deleteCardById, updateCardById } from './domains/card'
 import { parseId } from './helpers/parseId'
 
 export const createBusiness = (opts: Options) => {
