@@ -1,12 +1,18 @@
 import pino, { Logger as LoggerType } from 'pino'
+import pretty from 'pino-pretty'
 
-export const logger = pino({
-  transport: {
-    target: 'pino-pretty',
-    options: {
-      colorize: true,
-    },
+const stream = pretty({
+  levelFirst: true,
+  colorize: true,
+  ignore: "time,hostname,pid",
+});
+
+export const logger = pino(
+  {
+    name: "MyLogger",
+    level: process.env.NODE_ENV === "development" ? "debug" : "info",
   },
-})
+  stream
+);
 
 export type Logger = LoggerType

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "esbuild src/bin/api.ts --bundle --platform=node --target=node14 --outfile=dist/api.js",
     "dev": "pnpm prisma generate && node -r esbuild-register src/bin/api.ts",
     "test": "vitest --run"
   },
