@@ -17,5 +17,4 @@ model Card {
   title      String
   content    String
   traduction String
-  authorId   Int
 }
