@@ -40,24 +40,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run lint
 
-  # typechek:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: pnpm/action-setup@v2
-  #       with:
-  #         version: 8
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 21.x
-  #         cache: 'pnpm'
-
-  #     - run: pnpm install --frozen-lockfile
-  #     - run: pnpm run type-check
-
   test:
-    needs: typechek
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
