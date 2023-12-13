@@ -10,7 +10,7 @@
     "lint": "eslint --ext .ts src",
     "seed": "node -r esbuild-register prisma/seed.ts",
     "postinstall": "pnpm prisma generate",
-    "type-check": "pnpm tsc --noEmit",
+    "type-check": "tsc --noEmit",
     "db:setup": "node -r esbuild-register scripts/copyEnvFile && prisma db push && pnpm seed"
   },
   "keywords": [],
