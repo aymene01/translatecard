@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --dts --minify --format cjs --target node14 --outDir dist",
-    "tsc": "tsc --noEmit"
+    "type-check": "pnpm tsc --noEmit",
+    "lint": "eslint --ext .ts src"
   },
   "keywords": [],
   "author": "",

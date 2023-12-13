@@ -7,8 +7,10 @@
     "build": "esbuild src/bin/api.ts --bundle --platform=node --target=node14 --outfile=dist/api.js",
     "dev": "pnpm prisma generate && nodemon --delay 1000s --exec 'node -r esbuild-register src/bin/api.ts' -e ts",
     "test": "vitest --run",
+    "lint": "eslint --ext .ts src",
     "seed": "node -r esbuild-register prisma/seed.ts",
     "postinstall": "pnpm prisma generate",
+    "type-check": "pnpm tsc --noEmit",
     "db:setup": "node -r esbuild-register scripts/copyEnvFile && prisma db push && pnpm seed"
   },
   "keywords": [],
@@ -19,6 +21,7 @@
     "@types/express": "^4.17.21",
     "@types/lodash": "^4.14.194",
     "@types/morgan": "^1.9.9",
+    "@types/node": "^18.18.5",
     "esbuild": "^0.19.7",
     "esbuild-register": "^3.5.0",
     "nodemon": "^3.0.2"
