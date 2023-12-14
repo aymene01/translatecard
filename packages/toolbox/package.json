@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsup src/index.ts --dts --minify --format cjs --target node14 --outDir dist",
     "type-check": "tsc --noEmit",
-    "lint": "eslint --ext .ts src"
+    "lint": "eslint --ext .ts src",
+    "postinstall": "pnpm build"
   },
   "keywords": [],
   "author": "",

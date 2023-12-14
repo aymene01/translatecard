@@ -9,7 +9,7 @@ on:
       - '*'
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,13 +18,45 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: 21.x
+          node-version: '21.x'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run lint
+
+  type-check:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run type-check
+
+  build:
+    needs: type-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm run build
 
-  lint:
+  test:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -34,23 +66,7 @@ jobs:
           version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: 21.x
-          cache: 'pnpm'
-
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint
-
-  test:
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 21.x
+          node-version: '21.x'
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile

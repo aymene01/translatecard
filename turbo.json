@@ -6,18 +6,16 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
-    },
+    "lint": {},
     "dev": {
       "cache": false,
       "persistent": true
     },
     "test": {
-      "dependsOn": ["^test"]
+      "dependsOn": ["build"]
     },
     "type-check": {
-      "dependsOn": ["^type-check"]
+      "dependsOn": ["build"]
     },
     "db:setup":{
       "dependsOn": ["^db:setup"]
