@@ -25,7 +25,6 @@ jobs:
       - run: pnpm run lint
 
   type-check:
-    needs: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -38,11 +37,10 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-      - run: cd apps/api && pnpm prisma generate && cd ../..
       - run: pnpm run type-check
 
   build:
-    needs: type-check
+    needs: [lint, type-check]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

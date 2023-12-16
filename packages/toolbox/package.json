@@ -8,8 +8,7 @@
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm --outDir dist",
     "type-check": "tsc --noEmit",
-    "lint": "eslint --ext .ts src",
-    "postinstall": "pnpm build"
+    "lint": "eslint --ext .ts src"
   },
   "keywords": [],
   "author": "",
