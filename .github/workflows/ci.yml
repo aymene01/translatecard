@@ -1,4 +1,4 @@
-name: CI
+name: Apps CI
 
 on:
   push:
@@ -9,20 +9,52 @@ on:
       - '*'
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
-          version: 8.9.2
+          version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: 21.x
+          node-version: '21.x'
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build
+      - run: pnpm run lint
+
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo build --filter toolbox
+      - run: pnpm run type-check
+
+  build:
+    needs: [lint, type-check]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
 
   test:
     needs: build
@@ -31,11 +63,11 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
-          version: 8.9.2
+          version: 8
       - uses: actions/setup-node@v4
         with:
-          node-version: 21.x
+          node-version: '21.x'
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm test
+      - run: pnpm run test

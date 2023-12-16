@@ -9,7 +9,8 @@
     "test:unit": "vitest",
     "test": "vitest --run",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "lint": "eslint --ext .ts src"
   },
   "dependencies": {
     "pinia": "^2.1.7",
