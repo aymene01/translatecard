@@ -43,7 +43,7 @@ export const register = async (opts: Options, req: RegisterRequest): Promise<Reg
     return buildError(formatValidationError(error), 400)
   }
 
-  const { username, password, passwordConfirmation } = req
+  const { username, password, passwordConfirmation, name} = req
 
   const existingUser = await opts.database.prisma.user.findUnique({
     where: {
@@ -62,6 +62,7 @@ export const register = async (opts: Options, req: RegisterRequest): Promise<Reg
   const user = await opts.database.prisma.user.create({
     data: {
       username,
+      name,
       password: await opts.iamService.hashPassword(password),
     },
   })
