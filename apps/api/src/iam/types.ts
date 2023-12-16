@@ -8,3 +8,10 @@ export type Options = {
   // in ms
   jwtDuration: number
 }
+
+export type HTTPError = {
+  error: {
+    message: string
+    status: number
+  }
+}
