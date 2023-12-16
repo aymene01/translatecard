@@ -4,8 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
   "scripts": {
-    "build": "tsup src/index.ts --dts --minify --format cjs --target node14 --outDir dist",
+    "build": "tsup src/index.ts --dts --format cjs,esm --outDir dist",
     "type-check": "tsc --noEmit",
     "lint": "eslint --ext .ts src",
     "postinstall": "pnpm build"

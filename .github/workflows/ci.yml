@@ -38,7 +38,7 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm prisma generate
+      - run: cd apps/api && pnpm prisma generate && cd ../..
       - run: pnpm run type-check
 
   build:
