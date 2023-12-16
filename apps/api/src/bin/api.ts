@@ -37,8 +37,8 @@ const api = async (logger: Logger) => {
     mouthPath: Env.MOUNT_PATH,
   })
 
-  await server.start()
   await database.start()
+  await server.start()
   await waitForSignal(['SIGINT', 'SIGTERM'])
   logger.info('Shut down the server...👋')
   await database.stop()
