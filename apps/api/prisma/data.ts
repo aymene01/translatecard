@@ -1,4 +1,4 @@
-export const cards = [
+export const DEFAULT_CARD = [
   {
     content: 'Learning a new language improves memory and cognitive skills.',
     traduction: 'Aprender un nuevo idioma mejora la memoria y las habilidades cognitivas.',

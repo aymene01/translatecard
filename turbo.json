@@ -11,7 +11,10 @@
       "cache": false,
       "persistent": true
     },
-    "test": {},
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "ci":{},
     "type-check": {},
     "db:setup":{
       "dependsOn": ["^db:setup"]

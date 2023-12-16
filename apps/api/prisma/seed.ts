@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { cards } from './data'
+import { DEFAULT_CARD } from './data'
 
 const prisma = new PrismaClient()
 
@@ -9,7 +9,7 @@ async function createCard(card: { content: string; traduction: string; title: st
 
 async function main() {
   try {
-    await Promise.all(cards.map(card => createCard(card)))
+    await Promise.all(DEFAULT_CARD.map(card => createCard(card)))
   } catch (error) {
     console.error('Error occurred while creating cards:', error)
     process.exit(1)

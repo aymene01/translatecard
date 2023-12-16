@@ -1,4 +1,4 @@
-name: CI
+name: Apps CI
 
 on:
   push:
@@ -37,6 +37,7 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo build --filter toolbox
       - run: pnpm run type-check
 
   build:

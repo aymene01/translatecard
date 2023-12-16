@@ -12,7 +12,7 @@
     "db:setup": "turbo db:setup",
     "setup": "docker-compose up -d && pnpm install && pnpm run build && pnpm run db:setup",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ci": "pnpm build && pnpm run type-check && pnpm run lint && pnpm run test"
+    "ci": "turbo type-check --filter toolbox && turbo lint --filter toolbox && turbo build --filter toolbox"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
