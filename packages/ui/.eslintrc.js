@@ -1,0 +1,1 @@
+module.exports = require('@translatecard/config/eslint/eslint-ui')
