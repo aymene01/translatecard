@@ -1,5 +1,5 @@
 import { Options } from '@/business/types'
-import { HTTPError, HTTPSuccess, buildError, buildSuccess } from '@translatecard/api-utils'
+import { BusinessResponse, HTTPError, HTTPSuccess, buildError, buildSuccess } from '@translatecard/api-utils'
 import { JwtPayload } from 'jsonwebtoken'
 import { User } from '@prisma/client'
 
@@ -7,7 +7,9 @@ type AuthenticateRequest = {
   authorization?: string
 }
 
-type AuthenticateResponse = HTTPError | HTTPSuccess<{ user: User }>
+type AuthenticateResponse = BusinessResponse<{
+  user: User
+}>
 
 const validateAuthorizationHeader = (authorization?: string): string | null => {
   if (!authorization || !authorization.startsWith('Bearer ')) {

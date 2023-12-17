@@ -4,8 +4,5 @@
     "singleQuote": true,
     "trailingComma": "all",
     "bracketSpacing": true,
-    "arrowParens": "avoid",
-    "importOrderSeparation": true,
-    "importOrderSortSpecifiers": true,
-    "importOrder": ["^[^.@]/", "^@/", "^[.]"]
+    "arrowParens": "avoid"
   }
