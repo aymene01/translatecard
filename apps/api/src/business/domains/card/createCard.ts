@@ -1,6 +1,13 @@
 import { Options } from '@/business/types'
 import { Card } from '@prisma/client'
-import { isEmpty } from 'lodash'
+import {
+  buildError,
+  validateRequest,
+  HTTPError,
+  formatValidationError,
+  buildSuccess,
+  HTTPSuccess,
+} from '@translatecard/api-utils'
 
 type CreateCardRequest = {
   content: string
@@ -8,31 +15,20 @@ type CreateCardRequest = {
   title: string
 }
 
-type ValidationError = {
-  message: string
-  missingFields: string[]
-}
-
-type CreateCardResponse = Card | { error: ValidationError }
-
-const validateCreateCardRequest = (req: Partial<CreateCardRequest>): ValidationError | null => {
-  const requiredFields: (keyof CreateCardRequest)[] = ['content', 'traduction', 'title']
-  const missingFields = requiredFields.filter(field => !req[field])
-
-  if (!isEmpty(missingFields)) {
-    return {
-      message: 'Request is missing required fields',
-      missingFields,
-    }
-  }
-
-  return null
-}
+type CreateCardResponse = HTTPSuccess<Card> | HTTPError
 
 export const createCard = async (opts: Options, req: Partial<CreateCardRequest>): Promise<CreateCardResponse> => {
-  const error = validateCreateCardRequest(req)
+  const error = validateRequest(req, ['content', 'traduction', 'title'])
 
-  if (error) return { error }
+  if (error) return buildError(formatValidationError(error), 400)
+
+  const existingCard = await opts.database.prisma.card.findFirst({
+    where: {
+      title: req.title!,
+    },
+  })
+
+  if (existingCard) return buildError('Card already exists', 409)
 
   try {
     const newCardData = {
@@ -45,14 +41,9 @@ export const createCard = async (opts: Options, req: Partial<CreateCardRequest>)
 
     const card = await opts.database.prisma.card.create({ data: newCardData })
 
-    return card
+    return buildSuccess(card)
   } catch (error: unknown) {
     opts.logger.error(`Error creating card: ${error}`)
-    return {
-      error: {
-        message: 'There was an issue creating the card',
-        missingFields: ['database error'],
-      },
-    }
+    return buildError('There was an issue creating the card', 500)
   }
 }

@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { sendErrorResponse, sendSuccessResponse } from '@/http/utils'
 
 const api: Router = Router()
 
@@ -6,20 +7,20 @@ api.post('/login', async (req, res) => {
   const response = await req.business.login(req.body)
 
   if ('error' in response) {
-    return res.status(response.error.status).json(response.error.message)
+    return sendErrorResponse(res, response.error)
   }
 
-  return res.status(200).json(response)
+  return sendSuccessResponse(res, response)
 })
 
 api.post('/register', async (req, res) => {
   const response = await req.business.register(req.body)
 
   if ('error' in response) {
-    return res.status(response.error.status).json({ message: response.error.message })
+    return sendErrorResponse(res, response.error)
   }
 
-  return res.status(200).json(response)
+  return sendSuccessResponse(res, response)
 })
 
 export default api

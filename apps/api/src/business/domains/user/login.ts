@@ -1,5 +1,11 @@
 import { Options } from '@/business/types'
-import { HTTPError, buildError, formatValidationError, validateRequest } from '@translatecard/api-utils'
+import {
+  BusinessResponse,
+  buildError,
+  buildSuccess,
+  formatValidationError,
+  validateRequest,
+} from '@translatecard/api-utils'
 import { User } from '@prisma/client'
 
 type LoginRequest = {
@@ -7,12 +13,10 @@ type LoginRequest = {
   password: string
 }
 
-type LoginResponse =
-  | {
-      user: User
-      token: string
-    }
-  | HTTPError
+type LoginResponse = BusinessResponse<{
+  user: User
+  token: string
+}>
 
 export const login = async (opts: Options, req: LoginRequest): Promise<LoginResponse> => {
   const error = validateRequest(req, ['username', 'password'])
@@ -39,8 +43,8 @@ export const login = async (opts: Options, req: LoginRequest): Promise<LoginResp
 
   const token = opts.iamService.generateJwt({ username: user.username, uuid: user.id })
 
-  return {
+  return buildSuccess({
     user,
     token,
-  }
+  })
 }

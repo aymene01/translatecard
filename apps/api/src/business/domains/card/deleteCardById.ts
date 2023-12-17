@@ -1,12 +1,12 @@
 import { Options } from '@/business/types'
 import { Card } from '@prisma/client'
-import { buildError, HTTPError } from '@translatecard/api-utils'
+import { buildError, buildSuccess, BusinessResponse } from '@translatecard/api-utils'
 
 type DeleteCardByIdRequest = {
   id: number
 }
 
-type DeleteCardByIdResponse = { deletedCard: Card } | HTTPError
+type DeleteCardByIdResponse = BusinessResponse<Card>
 
 export const deleteCardById = async (opts: Options, req: DeleteCardByIdRequest): Promise<DeleteCardByIdResponse> => {
   const existingCard = await opts.database.prisma.card.findUnique({
@@ -26,7 +26,7 @@ export const deleteCardById = async (opts: Options, req: DeleteCardByIdRequest):
       },
     })
 
-    return { deletedCard }
+    return buildSuccess(deletedCard)
   } catch (error: unknown) {
     opts.logger.error(`Error deleting card with ID ${req.id}:`, error)
 

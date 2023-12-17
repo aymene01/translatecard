@@ -1,11 +1,12 @@
 import { Options } from '@/business/types'
 import { Card } from '@prisma/client'
+import { BusinessResponse, buildError, buildSuccess } from '@translatecard/api-utils'
 
 type GetCardByIdRequest = {
   id: number
 }
 
-type GetCardByIdResponse = { card: Card } | { error: { message: string } }
+type GetCardByIdResponse = BusinessResponse<Card>
 
 export const getCardById = async (opts: Options, req: GetCardByIdRequest): Promise<GetCardByIdResponse> => {
   try {
@@ -16,21 +17,13 @@ export const getCardById = async (opts: Options, req: GetCardByIdRequest): Promi
     })
 
     if (!card) {
-      return {
-        error: {
-          message: `Card with ID ${req.id} not found.`,
-        },
-      }
+      return buildError('Card not found', 404)
     }
 
-    return { card }
+    return buildSuccess(card)
   } catch (error: unknown) {
     opts.logger.error('Error retrieving card:', error)
 
-    return {
-      error: {
-        message: 'Error retrieving card data. Please try again later.',
-      },
-    }
+    return buildError('There was an issue retrieving the card', 500)
   }
 }
