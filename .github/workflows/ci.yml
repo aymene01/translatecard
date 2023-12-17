@@ -37,7 +37,7 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm turbo build --filter toolbox
+      - run: pnpm turbo build --filter toolbox --filter api-utils
       - run: pnpm run type-check
 
   build:
