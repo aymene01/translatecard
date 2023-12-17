@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from 'express'
 
-export const authenticate = (req: Request, res: Response, next: NextFunction) => {
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers
 
-  if (!req.business.authenticate({ authorization })) return res.status(401).json({ error: 'Unauthorized' })
+  const response = await req.business.authenticate({ authorization })
+
+  if ('error' in response) {
+    return res.status(response.error.status).json(response.error)
+  }
+
+  req.user = response.user
 
   next()
 }
