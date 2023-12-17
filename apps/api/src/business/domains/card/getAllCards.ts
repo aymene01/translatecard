@@ -1,4 +1,3 @@
-// cardService.ts
 import { Options } from '@/business/types'
 import { Card } from '@prisma/client'
 

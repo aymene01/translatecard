@@ -1,6 +1,6 @@
 import { Options } from '@/business/types'
 import { Card } from '@prisma/client'
-import { HTTPError, buildError } from '@/business/lib'
+import { buildError, HTTPError } from '@translatecard/api-utils'
 
 type DeleteCardByIdRequest = {
   id: number
