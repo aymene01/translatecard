@@ -1,5 +1,6 @@
 import { Options } from '@/business/types'
 import { Card, Prisma } from '@prisma/client'
+import { BusinessResponse, buildError, buildSuccess } from '@translatecard/api-utils'
 import { isEmpty } from 'lodash'
 
 type DataToUpdate = {
@@ -12,17 +13,13 @@ type UpdateCardByIdRequest = {
   id: number
 } & Partial<DataToUpdate>
 
-type UpdateCardByIdResponse = { updatedCard: Card } | { error: { message: string } }
+type UpdateCardByIdResponse = BusinessResponse<Card>
 
 export const updateCardById = async (opts: Options, req: UpdateCardByIdRequest): Promise<UpdateCardByIdResponse> => {
   const updatePayload = buildUpdatePayload(req)
 
   if (isEmpty(Object.keys(updatePayload))) {
-    return {
-      error: {
-        message: 'No valid fields provided for update.',
-      },
-    }
+    return buildError('No data to update', 400)
   }
 
   const existingCard = await opts.database.prisma.card.findUnique({
@@ -30,11 +27,7 @@ export const updateCardById = async (opts: Options, req: UpdateCardByIdRequest):
   })
 
   if (!existingCard) {
-    return {
-      error: {
-        message: `Card with ID ${req.id} does not exist.`,
-      },
-    }
+    return buildError('Card not found', 404)
   }
 
   try {
@@ -43,15 +36,11 @@ export const updateCardById = async (opts: Options, req: UpdateCardByIdRequest):
       data: updatePayload,
     })
 
-    return { updatedCard }
+    return buildSuccess(updatedCard)
   } catch (error: unknown) {
     opts.logger.error(`Error updating card with ID ${req.id}:`, error)
 
-    return {
-      error: {
-        message: 'Error updating card data. Please try again later.',
-      },
-    }
+    return buildError('There was an issue updating the card', 500)
   }
 }
 

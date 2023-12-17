@@ -1,5 +1,5 @@
 import { Options } from '@/business/types'
-import { HTTPError, buildError } from '@translatecard/api-utils'
+import { HTTPError, HTTPSuccess, buildError, buildSuccess } from '@translatecard/api-utils'
 import { JwtPayload } from 'jsonwebtoken'
 import { User } from '@prisma/client'
 
@@ -7,7 +7,7 @@ type AuthenticateRequest = {
   authorization?: string
 }
 
-type AuthenticateResponse = HTTPError | { user: User }
+type AuthenticateResponse = HTTPError | HTTPSuccess<{ user: User }>
 
 const validateAuthorizationHeader = (authorization?: string): string | null => {
   if (!authorization || !authorization.startsWith('Bearer ')) {
@@ -54,5 +54,5 @@ export const authenticate = async (opts: Options, req: AuthenticateRequest): Pro
     return buildError('Unauthorized: User not found.', 401)
   }
 
-  return { user }
+  return buildSuccess({ user })
 }
