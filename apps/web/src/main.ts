@@ -1,4 +1,4 @@
-import './index.css'
+import '@translatecard/ui/src/styles/index.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

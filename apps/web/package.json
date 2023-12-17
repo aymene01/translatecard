@@ -15,7 +15,9 @@
   "dependencies": {
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.2.5",
+    "@translatecard/config": "*",
+    "@translatecard/ui": "*"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
