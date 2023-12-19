@@ -41,13 +41,20 @@ Before you can run TranslateCard locally, make sure you have Node.js, PNPM, and 
     cd translatecard
     ```
 
-3. To make sure you're using the exact version of Node.js and other dependencies as defined for the project, use `proto`:
+### Proto
 
-    ```bash
-    proto use
-    ```
+**⚠️ Important**: In order to install the right version of the tools you will need to install the [`proto`](https://moonrepo.dev/proto) toolchain manager.
+Please follow the instructions on the [**proto**](https://moonrepo.dev/docs/proto/install) website to install it.
 
-4. Following the `proto` setup, run the setup script which will prepare all services:
+Once you have installed `proto`, please run the following command:
+
+```bash
+# Will download and install the supported versions of nodejs, npm and pnpm.
+# Run it from the root or a subfolder of the repository.
+proto use
+```
+
+3. Following the `proto` setup, run the setup script which will prepare all services:
 
     ```bash
     pnpm run setup
@@ -57,29 +64,29 @@ Before you can run TranslateCard locally, make sure you have Node.js, PNPM, and 
 
 After setting up the project, you can run the application using the following commands:
 
-- To start both the API and the web app:
+To start both the API and the web app:
 
-    ```bash
-    pnpm dev
-    ```
+```bash
+pnpm dev
+```
 
-- To start only the API service:
+To start only the API service:
 
-    ```bash
-    pnpm dev:api
-    ```
+```bash
+pnpm dev:api
+```
 
-- To start only the web application:
+To start only the web application:
 
-    ```bash
-    pnpm dev:web
-    ```
+```bash
+pnpm dev:web
+```
 
-- To launch Storybook for UI development:
+To launch Storybook for UI development:
 
-    ```bash
-    pnpm storybook
-    ```
+```bash
+pnpm storybook
+```
 
 ## Packages
 
