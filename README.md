@@ -27,7 +27,7 @@ TranslateCard aims to create an engaging learning experience by providing users 
 
 ## Setup
 
-Before you can run TranslateCard locally, make sure you have Node.js, PNPM, and Docker installed on your machine.
+❗️ Before you can run TranslateCard locally, make sure you have [`Docker`](https://www.docker.com/products/docker-desktop/) installed on your machine.
 
 1. Clone the repository:
 
@@ -40,7 +40,6 @@ Before you can run TranslateCard locally, make sure you have Node.js, PNPM, and 
     ```bash
     cd translatecard
     ```
-
 ### Proto
 
 **⚠️ Important**: In order to install the right version of the tools you will need to install the [`proto`](https://moonrepo.dev/proto) toolchain manager.
