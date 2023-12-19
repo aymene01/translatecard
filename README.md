@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source srcset="./assets/logo.webp">
-    <img alt="Lagon logo" height="60px" src="./assets/logo-white.png">
+    <source srcset="./assets/logo.png">
+    <img alt="TranslateCard logo" height="120px" src="./assets/logo.png"> <!-- Logo height increased from 60px to 120px -->
   </picture>
   <p align="center">
     Learn new language by gaming
