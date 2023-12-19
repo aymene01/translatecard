@@ -1,81 +1,122 @@
-# Turborepo starter
+<p align="center">
+  <picture>
+    <source srcset="./assets/logo.png">
+    <img alt="TranslateCard logo" height="200px" src="./assets/logo.png"> <!-- Logo height increased from 60px to 120px -->
+  </picture>
+  <p align="center">
+    Master new languages through the joy of gaming.
+    <br />
+    <br />
+</p>
 
-This is an official starter Turborepo.
+# TranslateCard
 
-## Using this example
+TranslateCard is a web application designed to assist individuals in learning new languages through interactive methods and educational resources.
 
-Run the following command:
+## Authors
 
-```sh
-npx create-turbo@latest
+- Aymene Bousbia – *Setup + Packages + Backend* – [Aymene Bousbia](https://github.com/aymene01)
+- Mehdi Jabbour – *Frontend* – [Mehdi Jabbour](https://github.com/Mehdii-tech)
+- Soufiane Le Breton – *UI/UX + Game Design* – [Soufiane Le Breton](https://github.com/Soufi4ne)
+
+Feel free to contact any of the authors for further information or questions regarding the project.
+
+## About TranslateCard
+
+TranslateCard aims to create an engaging learning experience by providing users with a variety of tools and strategies to improve their language skills. From flashcards to translation exercises, each feature is crafted to enhance the learning journey.
+
+## Setup
+
+❗️ Before you can run TranslateCard locally, make sure you have [`Docker`](https://www.docker.com/products/docker-desktop/) installed on your machine.
+
+1. Clone the repository:
+
+    ```bash
+    git clone git@github.com:aymene01/translatecard.git
+    ```
+
+2. Navigate to the cloned directory:
+
+    ```bash
+    cd translatecard
+    ```
+### Proto
+
+**⚠️ Important**: In order to install the right version of the tools you will need to install the [`proto`](https://moonrepo.dev/proto) toolchain manager.
+Please follow the instructions on the [**proto**](https://moonrepo.dev/docs/proto/install) website to install it.
+
+Once you have installed `proto`, please run the following command:
+
+```bash
+# Will download and install the supported versions of nodejs, npm and pnpm.
+# Run it from the root or a subfolder of the repository.
+proto use
 ```
 
-## What's inside?
+3. Following the `proto` setup, run the setup script which will prepare all services:
 
-This Turborepo includes the following packages/apps:
+    ```bash
+    pnpm run setup
+    ```
 
-### Apps and Packages
+## Running the Application
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+After setting up the project, you can run the application using the following commands:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+To start both the API and the web app:
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
+```bash
 pnpm dev
 ```
 
-### Remote Caching
+To start only the API service:
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+pnpm dev:api
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+To start only the web application:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+```bash
+pnpm dev:web
 ```
 
-## Useful Links
+To launch Storybook for UI development:
 
-Learn more about the power of Turborepo:
+```bash
+pnpm storybook
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## Packages
+
+The project is structured modularly with various packages:
+
+- **[api-utils](./packages/api-utils)**: Helper utilities to streamline business logic in our API.
+- **[toolbox](./packages/toolbox)**: A collection of TypeScript utility functions.
+- **[config](./packages/config)**: Central configuration settings for linting (ESLint), styling (TailwindCSS), and other project-wide tools.
+- **[ui](./packages/ui)**: The UI component library housing reusable UI components for TranslateCard.
+
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated. To contribute:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+## Acknowledgments
+
+- Special thanks to all contributors who have invested their time into making TranslateCard a resourceful application.
+- Hat tip to anyone whose code was used as inspiration.
+- Gratitude to the community for the constant feedback and support.
+
+---
+Best regards,
+
+The TranslateCard Team
