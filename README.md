@@ -4,7 +4,7 @@
     <img alt="TranslateCard logo" height="120px" src="./assets/logo.png"> <!-- Logo height increased from 60px to 120px -->
   </picture>
   <p align="center">
-    Learn new language by gaming
+    Master new languages through the joy of gaming.
     <br />
     <br />
 </p>
