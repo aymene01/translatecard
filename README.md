@@ -1,3 +1,14 @@
+<p align="center">
+  <picture>
+    <source srcset="./assets/logo.webp">
+    <img alt="Lagon logo" height="60px" src="./assets/logo-white.png">
+  </picture>
+  <p align="center">
+    Learn new language by gaming
+    <br />
+    <br />
+</p>
+
 # TranslateCard
 
 TranslateCard is a web application designed to assist individuals in learning new languages through interactive methods and educational resources.
