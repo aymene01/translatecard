@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source srcset="./assets/logo.png">
-    <img alt="TranslateCard logo" height="120px" src="./assets/logo.png"> <!-- Logo height increased from 60px to 120px -->
+    <img alt="TranslateCard logo" height="200px" src="./assets/logo.png"> <!-- Logo height increased from 60px to 120px -->
   </picture>
   <p align="center">
     Master new languages through the joy of gaming.
