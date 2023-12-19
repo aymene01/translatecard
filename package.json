@@ -11,7 +11,7 @@
     "lint": "turbo lint",
     "test": "turbo test",
     "db:setup": "turbo db:setup",
-    "setup": "docker-compose up -d && pnpm install && pnpm run build && pnpm run db:setup",
+    "setup": "docker compose up -d && pnpm install && pnpm run build && pnpm run db:setup",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "ci": "turbo type-check --filter toolbox && turbo lint --filter toolbox && turbo build --filter toolbox"
   },
