@@ -1,81 +1,105 @@
-# Turborepo starter
+# TranslateCard
 
-This is an official starter Turborepo.
+TranslateCard is a web application designed to assist individuals in learning new languages through interactive methods and educational resources.
 
-## Using this example
+## Authors
 
-Run the following command:
+- Aymene Bousbia – *Setup + Packages + Backend* – [AymeneBousbia](https://github.com/aymene01)
+- Mehdi Jabbour – *Frontend* – [MehdiJabbour](https://github.com/MehdiJabbour)
+- Soufiane Le Breton – *UI/UX* – [SoufianeLeBreton](https://github.com/SoufianeLeBreton)
 
-```sh
-npx create-turbo@latest
-```
+Feel free to contact any of the authors for further information or questions regarding the project.
 
-## What's inside?
+## About TranslateCard
 
-This Turborepo includes the following packages/apps:
+TranslateCard aims to create an engaging learning experience by providing users with a variety of tools and strategies to improve their language skills. From flashcards to translation exercises, each feature is crafted to enhance the learning journey.
 
-### Apps and Packages
+## Setup
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+Before you can run TranslateCard locally, make sure you have Node.js, PNPM, and Docker installed on your machine.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. Clone the repository:
 
-### Utilities
+    ```bash
+    git clone git@github.com:aymene01/translatecard.git
+    ```
 
-This Turborepo has some additional tools already setup for you:
+2. Navigate to the cloned directory:
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+    ```bash
+    cd translatecard
+    ```
 
-### Build
+3. To make sure you're using the exact version of Node.js and other dependencies as defined for the project, use `proto`:
 
-To build all apps and packages, run the following command:
+    ```bash
+    proto use
+    ```
 
-```
-cd my-turborepo
-pnpm build
-```
+4. Following the `proto` setup, run the setup script which will prepare all services:
 
-### Develop
+    ```bash
+    pnpm run setup
+    ```
 
-To develop all apps and packages, run the following command:
+## Running the Application
 
-```
-cd my-turborepo
-pnpm dev
-```
+After setting up the project, you can run the application using the following commands:
 
-### Remote Caching
+- To start both the API and the web app:
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+    ```bash
+    pnpm dev
+    ```
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+- To start only the API service:
 
-```
-cd my-turborepo
-npx turbo login
-```
+    ```bash
+    pnpm dev:api
+    ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- To start only the web application:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+    ```bash
+    pnpm dev:web
+    ```
 
-```
-npx turbo link
-```
+- To launch Storybook for UI development:
 
-## Useful Links
+    ```bash
+    pnpm storybook
+    ```
 
-Learn more about the power of Turborepo:
+## Packages
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+The project is structured modularly with various packages:
+
+- **[api-utils](./packages/api-utils)**: Helper utilities to streamline business logic in our API.
+- **[toolbox](./packages/toolbox)**: A collection of TypeScript utility functions.
+- **[config](./packages/config)**: Central configuration settings for linting (ESLint), styling (TailwindCSS), and other project-wide tools.
+- **[ui](./packages/ui)**: The UI component library housing reusable UI components for TranslateCard.
+
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated. To contribute:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+## Acknowledgments
+
+- Special thanks to all contributors who have invested their time into making TranslateCard a resourceful application.
+- Hat tip to anyone whose code was used as inspiration.
+- Gratitude to the community for the constant feedback and support.
+
+---
+Best regards,
+
+The TranslateCard Team
