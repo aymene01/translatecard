@@ -16,8 +16,8 @@ TranslateCard is a web application designed to assist individuals in learning ne
 ## Authors
 
 - Aymene Bousbia – *Setup + Packages + Backend* – [Aymene Bousbia](https://github.com/aymene01)
-- Mehdi Jabbour – *Frontend* – [Mehdi Jabbour](https://github.com/MehdiJabbour)
-- Soufiane Le Breton – *UI/UX* – [Soufiane Le Breton](https://github.com/SoufianeLeBreton)
+- Mehdi Jabbour – *Frontend* – [Mehdi Jabbour](https://github.com/Mehdii-tech)
+- Soufiane Le Breton – *UI/UX + Game Design* – [Soufiane Le Breton](https://github.com/Soufi4ne)
 
 Feel free to contact any of the authors for further information or questions regarding the project.
 
