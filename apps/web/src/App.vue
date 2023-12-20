@@ -3,4 +3,3 @@
     <h1 class="font-extralight text-5xl">Hello from the project</h1>
   </div>
 </template>
-
